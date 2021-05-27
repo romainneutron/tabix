@@ -171,7 +171,7 @@
             this.fetchQuery( "SELECT * FROM system.columns" ).then(columns => {
                 this.fetchQuery( "SELECT database,name,engine FROM system.tables" ).then(tables => {
                     this.fetchQuery( "SELECT name FROM system.databases" ).then(databases => {
-                        this.fetchQuery("SELECT name,key,attribute.names,attribute.types from system.dictionaries ARRAY JOIN attribute ORDER BY name,attribute.names", null).then((dictionaries) => {
+                        this.fetchQuery("SELECT name,key.names,key.types,attribute.names,attribute.types from system.dictionaries ARRAY JOIN attribute ORDER BY name,attribute.names", null).then((dictionaries) => {
                             this.fetchQuery("SELECT name,is_aggregate from system.functions", null).then((functions) => {
                                 console.timeEnd("Load Database Structure!");
                                 this.DS_storeCache(columns.data,tables.data,databases.data,dictionaries.data,functions.data);
